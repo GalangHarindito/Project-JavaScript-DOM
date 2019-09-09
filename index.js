@@ -1,8 +1,6 @@
-// let array = [['1' ,'Nami', 'Female', '+886 111 101010', 'nami@TKI.org', true], 
-//             ['2' ,'Mantria', 'Male',  '+62 812 242424', 'mantria@gmail.com', true], 
+// let array = [['1' ,'Nami', 'Female', '+886 111 101010', 'nami@TKI.org', true],
+//             ['2' ,'Mantria', 'Male',  '+62 812 242424', 'mantria@gmail.com', true],
 //             ['3' ,'Goodman', 'Male', '+62 813 363636', '-', true]];
-
-
 
 // let myContacts = (array) => {
 
@@ -60,60 +58,75 @@
 
 // document.getElementById("sign-submit").onclick = function() {submitContact()};
 
-$("#sign-submit").click (function(submitContact){
-    
+$("#sign-submit").click(function(submitContact) {
     let addName = document.getElementById("sign-name").value;
     let addPhone = document.getElementById("sign-phone").value;
     let addEmail = document.getElementById("sign-email").value;
 
-    var arrContact =[]
-    if(addName === '' || addPhone === '' || addEmail === ''){
-        alert('Kolom harus diisi semua')
-    }
-    else{
-        // for(let i=1;i<100;i++){  
+    var arrContact = [];
+    if (addName === "" || addPhone === "" || addEmail === "") {
+        alert("Kolom harus diisi semua");
+    } else {
+        let objectContact = {
+            addName,
+            addPhone,
+            addEmail
+        };
+        if (document.getElementById("sign-male").checked) {
+            objectContact.addGender = "Male";
+        } else if (document.getElementById("sign-female").checked) {
+            objectContact.addGender = "Female";
+        }
+        $("#myForm").submit(function(e) {
+            // e.preventDefault();
+            console.log(objectContact);
+            
+            // for(let i=1;i<100;i++){
             // if(arrContact.length === undefined || arrContact.length === null){
-                
-                let objectContact = {
-                    addName,
-                    addPhone,
-                    addEmail,
-                }
-                let i = 1
-                objectContact.addNo = i
-                let checkI = JSON.parse(localStorage.getItem(i))
-                
-                // let contactInfo = i
-                if(document.getElementById("sign-male").checked){
-                    objectContact.addGender = 'Male'
-                }else if(document.getElementById("sign-female").checked){ 
-                    objectContact.addGender = 'Female'
-                }
-                arrContact.push(objectContact)
-                let myData = JSON.stringify(arrContact)
-                localStorage.setItem("contactInfo", myData)
-                // i = 100
-                i++
-                // break
-            // }     
-            //     // else if(arrContact.length >= 1){
-                //     let checkData = JSON.parse(locaStorage.getItem(i))
-                //     checkData++
-                //     // localStorage.getItem(i)
-                //     // arrContact.push(objectContact)
-                //     let myData = JSON.stringify(arrContact)
-                //     localStorage.setItem("contactInfo", myData)
-                // }    
-                   
-        // }                                                                                                                        
-        
-    } 
-})
+
+            // let i = 1;
+            // objectContact.addNo = i;
+            // let checkI = JSON.parse(localStorage.getItem(i));
+
+            // let contactInfo = i
+
+            var existing = localStorage.getItem("contactInfo");
+
+            if (existing) {
+                existing = JSON.parse(existing);
+            } else {
+                existing = [];
+            }
+            console.log(existing);
+
+            existing.push(objectContact);
+
+            console.log(JSON.stringify(existing));
+
+            localStorage.setItem("contactInfo", JSON.stringify(existing));
+
+            // i = 100
+            // i++;
+        });
+        // break
+        // }
+        //     // else if(arrContact.length >= 1){
+        //     let checkData = JSON.parse(locaStorage.getItem(i))
+        //     checkData++
+        //     // localStorage.getItem(i)
+        //     // arrContact.push(objectContact)
+        //     let myData = JSON.stringify(arrContact)
+        //     localStorage.setItem("contactInfo", myData)
+        // }
+
+        // }
+    }
+});
 
 // $("#sign-submit").click (function(displayContact){
-   
+
 //     let tr = document.createElement('tr');
-//     let tdName = document.createElement('td'); 
+//     let tdName = document.createElement('td');
 //     let tdAdd = document.createElement('td');
 //     let tdTel = document.createElement('td');
 //     let tdEmail = document.createElement('td');
@@ -125,4 +138,3 @@ $("#sign-submit").click (function(submitContact){
 //     tr.appendChild(tdEmail);
 //     tr.appendChild(tdUrl);
 // })
-
