@@ -63,7 +63,6 @@ $("#sign-submit").click(function(submitContact) {
     let addPhone = document.getElementById("sign-phone").value;
     let addEmail = document.getElementById("sign-email").value;
 
-    var arrContact = [];
     if (addName === "" || addPhone === "" || addEmail === "") {
         alert("Kolom harus diisi semua");
     } else {
@@ -78,18 +77,7 @@ $("#sign-submit").click(function(submitContact) {
             objectContact.addGender = "Female";
         }
         $("#myForm").submit(function(e) {
-            // e.preventDefault();
             console.log(objectContact);
-            
-            // for(let i=1;i<100;i++){
-            // if(arrContact.length === undefined || arrContact.length === null){
-
-            // let i = 1;
-            // objectContact.addNo = i;
-            // let checkI = JSON.parse(localStorage.getItem(i));
-
-            // let contactInfo = i
-
             var existing = localStorage.getItem("contactInfo");
 
             if (existing) {
@@ -98,28 +86,11 @@ $("#sign-submit").click(function(submitContact) {
                 existing = [];
             }
             console.log(existing);
-
             existing.push(objectContact);
-
             console.log(JSON.stringify(existing));
-
             localStorage.setItem("contactInfo", JSON.stringify(existing));
-
-            // i = 100
-            // i++;
         });
-        // break
-        // }
-        //     // else if(arrContact.length >= 1){
-        //     let checkData = JSON.parse(locaStorage.getItem(i))
-        //     checkData++
-        //     // localStorage.getItem(i)
-        //     // arrContact.push(objectContact)
-        //     let myData = JSON.stringify(arrContact)
-        //     localStorage.setItem("contactInfo", myData)
-        // }
 
-        // }
     }
 });
 
